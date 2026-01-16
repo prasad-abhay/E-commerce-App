@@ -20,6 +20,11 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+];
+
 const app = express(); 
 const PORT = process.env.PORT || 3000;
 
@@ -29,10 +34,20 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL, "http://localhost:5173"],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.options("*", cors());
 
 //  connect database
 connectDB();
