@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BAES_URL = import.meta.env.VITE_BASEURL || "http://localhost:3000/api";
+const BAES_URL = import.meta.env.VITE_BASEURL ;
 
 const initialState = {
   isLoading: false,
