@@ -21,7 +21,7 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
 const allowedOrigins = [
-  process.env.FRONTEND_URL,
+  process.env.VITE_BASEURL,
   "http://localhost:5173",
 ];
 
