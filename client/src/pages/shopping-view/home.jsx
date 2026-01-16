@@ -27,7 +27,7 @@ import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { useToast } from "@/components/ui/use-toast";
 import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
-import Footer from "@/components/common/Footer";
+import Footer from "@/components/common/footer";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
