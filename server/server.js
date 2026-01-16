@@ -51,6 +51,10 @@ app.use("/api/shop/review", shopReviewRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
+app.get("/", (req, res) => {
+  res.send("EasyShop API is running...");
+});
+
 //  start server
 app.listen(PORT, () =>
   console.log(`Server is now running on port ${PORT}`)
