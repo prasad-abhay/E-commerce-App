@@ -20,32 +20,12 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
-const allowedOrigins = [
-  process.env.VITE_BASEURL,
-  "http://localhost:5173",
-];
-
 const app = express(); 
 const PORT = process.env.PORT || 3000;
 
 //  middleware
 app.use(cookieParser());
 app.use(express.json());
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
 
 app.use(
   cors({
