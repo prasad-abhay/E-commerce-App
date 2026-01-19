@@ -17,6 +17,7 @@ function ProductImageUpload({
   isCustomStyling = false,
 }) {
   const inputRef = useRef(null);
+  const BASE_URL = import.meta.env.VITE_BASEURL;
 
 
   function handleImageFileChange(event) {
@@ -42,14 +43,19 @@ function ProductImageUpload({
     }
   }
 
-  async function uploadImageToCloudinary() {
-    setImageLoadingState(true);
-    const data = new FormData();
-    data.append("my_file", imageFile);
-    const response = await axios.post(
-      "http://localhost:3000/api/admin/products/upload-image",
-      data
-    );
+async function uploadImageToCloudinary() {
+  setImageLoadingState(true);
+
+  const data = new FormData();
+  data.append("my_file", imageFile);
+
+  const response = await axios.post(
+    `${BASE_URL}/admin/products/upload-image`,
+    data,
+    {
+      withCredentials: true, // IMPORTANT for auth cookie
+    }
+  );
 
     if (response?.data?.success) {
       setUploadedImageUrl(response.data.result.url);
