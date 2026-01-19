@@ -47,7 +47,13 @@ app.use(
   })
 );
 
-app.options("*", cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173","https://easyshop-j844.onrender.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, 
+  })
+);
 
 //  connect database
 connectDB();
