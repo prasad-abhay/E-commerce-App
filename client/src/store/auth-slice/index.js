@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BAES_URL = import.meta.env.VITE_BASEURL ;
+const BAES_URL = import.meta.env.VITE_BASEURL;
 
 const initialState = {
   isAuthenticated: false,
@@ -80,7 +80,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action) => {},
+    setUser: (state, action) => { },
   },
   extraReducers: (builder) => {
     builder
@@ -119,10 +119,8 @@ const authSlice = createSlice({
         state.user = action.payload.success ? action.payload.user : null;
         state.isAuthenticated = action.payload.success;
       })
-      .addCase(checkAuth.rejected, (state, action) => {
+      .addCase(checkAuth.rejected, (state) => {
         state.isLoading = false;
-        state.user = null;
-        state.isAuthenticated = false;
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
         state.isLoading = false;
